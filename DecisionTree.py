@@ -83,6 +83,7 @@ def find_majority(dataSet):
     return (x.isin(['y']).sum(axis=0) >= x.isin(['n']).sum(axis=0)).tolist()
 
 
+# calculate accuracy
 def accuracy(tree, df):
     total = 0
     for i in range(len(df)):
@@ -91,6 +92,7 @@ def accuracy(tree, df):
     return total / (len(df) * 1.0)
 
 
+# build the model and return the accuracies and tree sizes
 def model(df, train_ratio, iterations, fill_in=False):
     train_accuracies = []
     test_accuracies = []
