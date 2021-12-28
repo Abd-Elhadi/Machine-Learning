@@ -2,6 +2,14 @@ import pandas as pd
 import numpy as np
 
 
+def cost_function(x, y, w):
+    fx = np.dot(x, w)
+    if np.dot(y, fx) >= 1:
+        return 0
+    else:
+        return max(0, 1-np.dot(y, fx))
+
+
 def gradient_descent(x, y, w, alpha, lamda, iterations):
     m = len(x)  # size of the training set
 
@@ -10,7 +18,7 @@ def gradient_descent(x, y, w, alpha, lamda, iterations):
         for i in range(m):
             # No mis-classification
             if y[i] * fx[i] >= 1:
-                w = w - (alpha * (2 * lamda) * w)
+                w = w - (alpha * (2 * lamda * w))
             # Mis-classification
             else:
                 w = w + (alpha * ((y[i] * x[i]) - (2 * lamda * w)))
